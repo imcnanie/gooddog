@@ -5,10 +5,18 @@ import serial
 import time
 import numpy as np 
 import ast
+import sys
+SELECTED_ACTUATOR = sys.argv[1] #RR_0 RR_1
+print("Creating lookup table for "+ SELECTED_ACTUATOR)
+ACTUATORS = {"RR_0": "feee00ba0aff",
+             "RR_1": "feee01ba0aff",
+             "RR_2": "feee02ba0aff"}
+
 import pprint
-
-
 pp = pprint.PrettyPrinter(indent=4)
+
+
+
 
 def configure_serial(port):
     """
@@ -47,7 +55,6 @@ def filter_lines_of_specific_len(lines):
     return filtered_lines 
 
 #24-27
-RR_1 = "feee01ba0aff"
 def filter_by_actuator(actuator, lines):
     """
     Filters the lines that start with the given actuator string.
@@ -142,10 +149,10 @@ def read_serial_data(ser):
         ser.close()
 
         # Join all accumulated data into one big string and write it to the file at the end
-        with open("torque_table2.py", mode="w") as file_writer:
+        with open("torque_table_"+SELECTED_ACTUATOR+".py", mode="w") as file_writer:
             packets = split_by_feee_packet(accumulated_data)
             filtered_packets = filter_lines_of_specific_len(packets)
-            filtered_by_actuator = filter_by_actuator(RR_1, filtered_packets)
+            filtered_by_actuator = filter_by_actuator(ACTUATORS[SELECTED_ACTUATOR], filtered_packets)
             pp.pprint(filtered_by_actuator)
             
             # convert plaintext packets into hex list

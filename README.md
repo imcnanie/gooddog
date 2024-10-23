@@ -1,10 +1,13 @@
 # gooddawg WIP! Only 1 motor logged for now!
 Unitree has decided to encrypt their RS485 CRC, so I am recording all the packets using the [freedog sdk](https://github.com/Bin4ry/free-dog-sdk) (shoutout to a sick project!) and playing them back directly into the motor lines.
 
-Yes this means we will finally be able to control our dogs without the brain guts! This is a proof of concept, feel free to use these tables to e.g. pixhawkify your dawg. Of course I'd love to decode the CRC so we don't need to record packets all the time, but it's progress! HMU if you want to work on this.
+Yes this means we will finally be able to control our dogs without the brain guts! This is a proof of concept, feel free to use these tables to e.g. pixhawkify your dawg. Of course I'd love to decode the CRC so we don't need to record packets all the time, but it's progress! This repo should provide more than enough packets for CRC analysis. HMU if you want to work on this.
 
 # hookup
-- I use a (U2D2)[https://www.robotis.us/u2d2/], the adapter for controlling dynamixels. Go1's motors operate at 5 000 000 bps here, so we need a good RS485 adapter to talk to it.
+- I use a [U2D2](https://www.robotis.us/u2d2/), the adapter for controlling dynamixels. Go1's motors operate at 5 000 000 bps here, so we need a good RS485 adapter to talk to it.
+- When recording, you need to splice into the rs485 lines and maintain the connection to the control board
+- When driving, you need to disconnect the rs485 from the robot
+- Keep in mind that there are 4 RS485 lines from each leg, so you'll need to splice into each of them separately if you're recording packets.
 
 # normal operation
 - unplug the legs, they are now free.
@@ -20,8 +23,8 @@ L2 + A
 L2 + B
 L1 + L2 + START
 `
-- start the logging script: sudo ./log_packets_and_generate_LUT.py
-- start the freedog streaming script (sweeps packets from -4.0 to 4.0 torque).
+- start the logging script: sudo ./log_packets_and_generate_LUT.py RR_0 (or RR_1, RR_2...) 
+- start the freedog streaming script (sweeps packets from -4.0 to 4.0 torque, set which actuator you're recording on the top of the script). I sweep pretty slow to make sure to capture all the packets, it will take a few minutes.
 - when the streaming script is finished the leg will go limp, then you can ctrl+c the logging script, which will generate a lookup table based on that motor (TODO: make it work for more than one motor)
 
 connect to the dogs wifi network (TODO
@@ -33,10 +36,12 @@ connect to the dogs wifi network (TODO
 - double the fidelity of the packets (send half as slow)
   - upload the freedog driver script
 - build lookup tables for all the motors
+- parse feedback from motors
+- realtime kernel?
 - pictures, better explanation on this readme
 
 # special thanks/previous work
-- (free dog sdk)[https://github.com/Bin4ry/free-dog-sdk]  
-- (devemin's awesome X)[x.com/devemin/]
-- (Bin4ry)[https://github.com/Bin4ry]
-- (d0tslash)[https://x.com/d0tslash]
+- [free dog sdk](https://github.com/Bin4ry/free-dog-sdk)
+- [devemin's awesome X](x.com/devemin/)
+- [Bin4ry](https://github.com/Bin4ry)
+- [d0tslash](https://x.com/d0tslash)

@@ -9,7 +9,7 @@ import numpy as np
 import math
 
 #from LUT.torque_table import torque_table
-from torque_table2 import torque_table
+from torque_table_RR_2 import torque_table
 
 def configure_serial(port):
     ser = serial.Serial(
