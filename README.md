@@ -32,12 +32,20 @@ connect to the dogs wifi network (TODO
 # NixOS notes
 - I use NixOS, so it will get the dependencies for me, if you use another OS, install the deps yourself, you can find them in the #! at the top of the file. (pyserial, numpy rn). Then you probably want to run them with python instead of ./ 
 
+# Misc Notes
+- The LUTs for FL_0, RL_0, FR_0, FL_0 will actually work for any *_0 motor (same goes for the _1s _2s). But I noticed on my dog the packets are slightly different. See below. I suspect this is calibration, or something in the freedog SDK, but it warrants futher investigation
+  - RR_0: feee00ba0aff0000000000005fffff7fc aecff7f 0000e42702000000000087f39bd4
+  - FL_0: feee00ba0aff0000000000005fffff7fc 5070080 0000e427020000000000676b3672
+- The *_2 LUTs correspond to half the torque ~27k instead of ~40k. Again not sure if this is baked into freedog, but it probably has something to do with the lever arm on the pushrod
+- I sent values from -4 to +4 torque, I will soon be coming up with a scale setup to convert these into Nm. The freedog example goes from -5 to +5 but I really didn't want to break my robot (there were reports of people burning out mosfets on their robots). Also my dog is cut in half and has the motherboard precariously spilling out of its guts. Let me know if you need more torque, happy to help try it on your dog!
+
 # TODO
 - double the fidelity of the packets (send half as slow)
   - upload the freedog driver script
 - build lookup tables for all the motors
 - parse feedback from motors
 - realtime kernel?
+- make a # -> Nm table for the motor torques
 - pictures, better explanation on this readme
 
 # special thanks/previous work

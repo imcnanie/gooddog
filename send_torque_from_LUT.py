@@ -9,7 +9,7 @@ import numpy as np
 import math
 
 #from LUT.torque_table import torque_table
-from torque_table_RR_2 import torque_table
+from torque_table_FR_1 import torque_table
 
 def configure_serial(port):
     ser = serial.Serial(
@@ -62,7 +62,7 @@ if __name__ == "__main__":
         print("Sending packets forward and reverse in a loop...")
         # Write the first 36 bytes of the nearest packet
         while True:
-            sin_of_time = 10000*(math.sin(2 * math.pi * 0.1 * time.time())) 
+            sin_of_time = 20000*(math.sin(2 * math.pi * 0.1 * time.time())) 
             nearest_packet, nearest_key = find_nearest_packet(sin_of_time, torque_table)
             print(nearest_key)
             serial_port.write(nearest_packet[:36]) # probably unecessary to slice, TODO check the number of bytes in the LUTs

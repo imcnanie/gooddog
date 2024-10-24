@@ -8,9 +8,18 @@ import ast
 import sys
 SELECTED_ACTUATOR = sys.argv[1] #RR_0 RR_1
 print("Creating lookup table for "+ SELECTED_ACTUATOR)
-ACTUATORS = {"RR_0": "feee00ba0aff",
-             "RR_1": "feee01ba0aff",
-             "RR_2": "feee02ba0aff"}
+ACTUATORS = {"RR_0": "feee00ba0aff", #
+             "RR_1": "feee01ba0aff", #
+             "RR_2": "feee02ba0aff", #
+             "FL_0": "feee00ba0aff", #
+             "FL_1": "feee01ba0aff", #
+             "FL_2": "feee02ba0aff", #
+             "RL_0": "feee00ba0aff",
+             "RL_1": "feee01ba0aff",
+             "RL_2": "feee02ba0aff",
+             "FR_0": "feee00ba0aff", #
+             "FR_1": "feee01ba0aff", #
+             "FR_2": "feee02ba0aff",} #
 
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
