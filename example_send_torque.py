@@ -72,3 +72,5 @@ if __name__ == "__main__":
     finally:
         serial_port.close()
         print("Serial port closed.")
+
+        

@@ -14,9 +14,9 @@ ACTUATORS = {"RR_0": "feee00ba0aff", #
              "FL_0": "feee00ba0aff", #
              "FL_1": "feee01ba0aff", #
              "FL_2": "feee02ba0aff", #
-             "RL_0": "feee00ba0aff",
-             "RL_1": "feee01ba0aff",
-             "RL_2": "feee02ba0aff",
+             "RL_0": "feee00ba0aff", #
+             "RL_1": "feee01ba0aff", #
+             "RL_2": "feee02ba0aff", #
              "FR_0": "feee00ba0aff", #
              "FR_1": "feee01ba0aff", #
              "FR_2": "feee02ba0aff",} #
