@@ -1,7 +1,7 @@
 # Good Dog- Turn your perfectly good dog into robot arms
 Unitree has decided to encrypt their RS485 CRC, so I recorded all the packets using the [freedog sdk](https://github.com/Bin4ry/free-dog-sdk) (shoutout to a sick project!) and play them back directly into the motor lines.
 
-Yes this means we will finally be able to control our dogs without the brain guts! This is a proof of concept, feel free to use these tables to e.g. pixhawkify your dawg. Of course I'd love to decode the CRC so we don't need to record packets all the time, but it's progress! This repo should provide more than enough packets for CRC analysis. HMU if you want to work on this.
+Yes this means we will finally be able to control our dogs without the brain guts! This is a proof of concept, feel free to use these tables to e.g. pixhawkify your dawg. ~~Of course I'd love to decode the CRC so we don't need to record packets all the time, but it's progress! This repo should provide more than enough packets for CRC analysis. HMU if you want to work on this.~~ Great job AATB, check out their repo below! We now have the CRC algorithm for go1 and go2!
 
 # Wiring
 - I use a [U2D2](https://www.robotis.us/u2d2/), the adapter for controlling dynamixels. Go1's motors operate at 5 000 000 bps here, so we need a good RS485 adapter to talk to it.
@@ -47,6 +47,8 @@ L1 + L2 + START
 - [ ] pictures on this readme
 
 # special thanks/previous work
+- [AATB for decoding the CRC on Go1 and Go2](https://github.com/aatb-ch/unitree_crc)
+- [benrg for finding the initial CRC polynomial](https://crypto.stackexchange.com/questions/113287/do-i-have-any-hope-of-decoding-this-crc/113310#113310)
 - [free dog sdk](https://github.com/Bin4ry/free-dog-sdk)
 - [devemin's awesome X](x.com/devemin/)
 - [Bin4ry](https://github.com/Bin4ry)

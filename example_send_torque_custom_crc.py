@@ -10,6 +10,7 @@ import math
 
 #from LUT.torque_table import torque_table
 from torque_table_FR_2 import torque_table
+import go1_calc_crc as packetman
 
 def configure_serial(port):
     ser = serial.Serial(
@@ -62,10 +63,13 @@ if __name__ == "__main__":
         print("Sending packets forward and reverse in a loop...")
         # Write the first 36 bytes of the nearest packet
         while True:
-            sin_of_time = 3000*(math.sin(2 * math.pi * 0.1 * time.time())) 
-            nearest_packet, nearest_key = find_nearest_packet(sin_of_time, torque_table)
-            print(nearest_key)
-            serial_port.write(nearest_packet[:36]) # probably unecessary to slice, TODO check the number of bytes in the LUTs
+            sin_of_time = 5000*(math.sin(2 * math.pi * 0.1 * time.time())) 
+            #nearest_packet, nearest_key = find_nearest_packet(sin_of_time, torque_table)
+            #print(nearest_key)
+            the_packet = packetman.build_a_packet(int(sin_of_time))
+            print(the_packet)
+            
+            serial_port.write(bytes.fromhex(the_packet)) # probably unecessary to slice, TODO check the number of bytes in the LUTs
 
     except KeyboardInterrupt:
         pass
