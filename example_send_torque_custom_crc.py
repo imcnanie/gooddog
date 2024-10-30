@@ -9,7 +9,7 @@ import numpy as np
 import math
 
 #from LUT.torque_table import torque_table
-from torque_table_FR_2 import torque_table
+#from torque_table_FR_2 import torque_table # I definitely don't need it...
 import go1_calc_crc as packetman
 
 def configure_serial(port):
